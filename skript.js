@@ -11,6 +11,5 @@ console.log(typeof title, typeof fullPrice, typeof adaptive);
 console.log(screens.length);
 console.log(screenPrice + '₽');
 console.log(fullPrice + '₽');
-screens.toLowerCase();
-console.log(screens.split(', '));
+console.log(screens.toLowerCase().split(', '));
 console.log(fullPrice * (rollback / 100));
