@@ -54,9 +54,9 @@ fullPrice = getFullPrice(screenPrice, allServicePrices);
 servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 title = getTitle(title);
 
-console.log(showTypeOf(title));
-console.log(showTypeOf(screenPrice));
-console.log(showTypeOf(adaptive));
+showTypeOf(title);
+showTypeOf(screenPrice);
+showTypeOf(adaptive);
 console.log(screens);
 console.log(getRollbackMessage(fullPrice));
 console.log(Math.ceil(getServicePercentPrices(fullPrice, rollback)));
