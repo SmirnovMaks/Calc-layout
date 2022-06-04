@@ -19,10 +19,11 @@ const asking = function () {
     title = prompt("Как называется ваш проект?", "Калькулятор верстки");
     screens = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные');
 
-    do {
-        screenPrice = +prompt('Сколько будет стоить данная работа?', 12000);
-    } while (!isNumber(screenPrice));
-    console.log(!isNumber(screenPrice));
+    screenPrice = prompt('Сколько будет стоить данная работа?');
+    while (!isNumber(screenPrice)) {
+        screenPrice = prompt('Сколько будет стоить данная работа?', 12000);
+    }
+    screenPrice = Number(screenPrice);
 
     adaptive = confirm('Нужен ли адаптив на сайте?');
 };
@@ -44,8 +45,8 @@ const getRollbackMessage = function (price) {
 };
 
 const getAllServicePrices = function () {
-    let sum = 0;
-
+    let sum;
+    console.log(sum)
     for (let i = 0; i < 2; i++) {
         if (i === 0) {
             service1 = prompt('Какой дополнительный тип услуги нужен?', 'Метрика');
@@ -53,7 +54,14 @@ const getAllServicePrices = function () {
             service2 = prompt('Какой дополнительный тип услуги нужен?', 'Отправка форм');
         }
 
-        sum += +prompt('Сколько это будет стоить?', 1000);
+
+        do {
+            sum += prompt('Сколько это будет стоить?', 1000);
+            sum = Number(sum);
+        } while (!isNumber(sum));
+
+
+
     }
 
     return sum;
