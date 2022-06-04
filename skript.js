@@ -45,8 +45,8 @@ const getRollbackMessage = function (price) {
 };
 
 const getAllServicePrices = function () {
-    let sum;
-    console.log(sum)
+    let sum = 0;
+    // console.log(sum + 1);
     for (let i = 0; i < 2; i++) {
         if (i === 0) {
             service1 = prompt('Какой дополнительный тип услуги нужен?', 'Метрика');
