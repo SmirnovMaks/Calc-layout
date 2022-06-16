@@ -101,24 +101,6 @@ const appData = {
         const cloneScreen = screens[0].cloneNode(true);
         screens[screens.length - 1].after(cloneScreen);
     },
-    asking: function () {
-        for (let i = 0; i < 2; i++) {
-            let name;
-            let price = 0;
-            do {
-                name = prompt('Какой дополнительный тип услуги нужен?');
-            }
-            while (!isNaN(name));
-
-            do {
-                price = prompt('Сколько это будет стоить?');
-            } while (!appData.isNumber(price));
-
-            appData.services[name] = +price;
-        }
-
-    },
-
     addPrices: function () {
         for (let screen of appData.screens) {
             appData.screenPrice += +screen.price;
