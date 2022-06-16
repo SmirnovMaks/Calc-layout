@@ -111,7 +111,7 @@ const appData = {
         }
 
         for (let key in appData.servicesPercent) {
-            appData.servicePricePercent += appData.screenPrice * (appData.servicesPercent / 100);
+            appData.servicePricePercent += appData.screenPrice * (appData.servicesPercent[key] / 100);
         }
 
         appData.fullPrice = appData.screenPrice + appData.servicePriceNumber + appData.servicePricePercent;
