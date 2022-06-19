@@ -33,12 +33,15 @@ const appData = {
     count: 0,
 
     init: function () {
-        appData.disabledStartBtn();
         appData.addTitle();
         startBtn.addEventListener('click', appData.start);
         buttonPlus.addEventListener('click', appData.addScreenBlock);
+        buttonPlus.addEventListener('click', appData.disabledStartBtn);
         inputRange.addEventListener('input', appData.addRolback);
+        appData.disabledStartBtn();
     },
+
+
 
     addRolback: function (event) {
         inputRangeValue.textContent = event.target.value + '%';
@@ -62,8 +65,7 @@ const appData = {
         totalCount.value = appData.count;
     },
     addScreens: function () {
-        let screens = document.querySelectorAll('.screen');
-
+        screens = document.querySelectorAll('.screen');
         screens.forEach(function (screen, index) {
             const select = screen.querySelector('select');
             const input = screen.querySelector('input');
@@ -78,6 +80,48 @@ const appData = {
             });
         });
     },
+
+    disabledStartBtn: function () {
+        screens = document.querySelectorAll('.screen');
+        let x = true;
+        const disabledBtn = function () {
+            if (x === true) {
+                startBtn.setAttribute('disabled', 'disabled');
+                startBtn.style.backgroundColor = 'gray';
+            } else if (x === false) {
+                startBtn.removeAttribute('disabled');
+                startBtn.style.backgroundColor = '';
+            }
+        };
+
+        const check = function () {
+            screens = document.querySelectorAll('.screen');
+
+            for (let i = 0; i < screens.length; i++) {
+                const select = screens[i].querySelector('select');
+                const input = screens[i].querySelector('input');
+                if (select.value === '' || input.value === '') {
+                    x = true;
+                    disabledBtn();
+                    break;
+                } else {
+                    x = false;
+                }
+                disabledBtn();
+            }
+
+        };
+        check();
+        disabledBtn();
+
+        screens.forEach(function (screen) {
+            const select = screen.querySelector('select');
+            const input = screen.querySelector('input');
+            select.addEventListener('change', check);
+            input.addEventListener('input', check);
+        });
+    },
+
     addServices: function () {
         otherItemsPercent.forEach(function (item) {
             const check = item.querySelector('input[type=checkbox]');
@@ -86,6 +130,7 @@ const appData = {
             if (check.checked) {
                 appData.servicesPercent[label.textContent] = +input.value;
             }
+
         });
 
         otherItemsNumber.forEach(function (item) {
@@ -122,28 +167,8 @@ const appData = {
     logger: function () {
         console.log(appData);
     },
-    disabledStartBtn: function () {
-        const select = document.querySelector('.main-controls__select select');
-        const input = document.querySelector('.main-controls__input input');
-        startBtn.setAttribute('disabled', 'disabled');
-        const onSelectChange = function () {
-            input.addEventListener("input", onInputChange);
 
-            if (input.value) {
-                startBtn.removeAttribute("disabled");
-            }
-        };
-
-        function onInputChange() {
-            startBtn.setAttribute("disabled", "disabled");
-
-            if (input.value) {
-                startBtn.removeAttribute("disabled");
-            }
-        }
-        select.addEventListener('change', onSelectChange);
-
-    }
 };
+
 
 appData.init();
